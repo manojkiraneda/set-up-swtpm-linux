@@ -8,8 +8,6 @@ sudo apt install git-email\
 		 libbrlapi-dev \
 		 libbz2-dev \
 		 libcap-ng-dev \
-		 libcu \
-		 rl4-gnutls-dev \
 		 libgtk-3-dev \
 		 libibverbs-dev \
 		 libjpeg8-dev \
@@ -28,12 +26,14 @@ sudo apt install git-email\
 		 libxen-dev \
 		 liblzo2-dev \
 		 valgrind \
-		 xfslibs-dev
+		 xfslibs-dev \
+		 python3-pip \
+		 setuptools
 
 # Download openbmc/qemu source code
 git clone https://github.com/openbmc/qemu.git ~/openbmc-qemu
 cd ~/openbmc-qemu
 ./configure --target-list=arm-softmmu
 ninja -C build
-
-
+cd build
+ninja install
