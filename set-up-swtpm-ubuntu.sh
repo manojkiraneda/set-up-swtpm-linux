@@ -68,16 +68,6 @@ make -j$(nproc)
 sudo make install
 sudo ldconfig
 
-# Install tpm2-abrmd daemon
-git clone https://github.com/tpm2-software/tpm2-abrmd ~/tpm2-abrmd
-cd ~/tpm2-abrmd
-git checkout 3.0.0
-./bootstrap
-./configure
-make -j$(nproc)
-sudo make install
-sudo ldconfig
-
 # Install tpm2-openssl for tpm2 provider support
 git clone https://github.com/tpm2-software/tpm2-openssl ~/tpm2-openssl
 cd ~/tpm2-openssl
@@ -131,7 +121,6 @@ mkdir -p "$SERVICE_DIR"
 cat <<EOL > "$SERVICE_FILE"
 [Unit]
 Description=TPM2.0 Simulator Server daemon
-Before=tpm2-abrmd.service
 
 [Service]
 ExecStartPre=/usr/bin/mkdir -p /tmp/emulated_tpm
