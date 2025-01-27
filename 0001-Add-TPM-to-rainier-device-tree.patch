@@ -1,0 +1,43 @@
+From 76ff0d83c0216a76aa0989214e81ffcd66748864 Mon Sep 17 00:00:00 2001
+From: Manojkiran Eda <manojkiran.eda@gmail.com>
+Date: Mon, 6 Jan 2025 10:38:13 -0600
+Subject: [PATCH] Add TPM to rainier device tree
+
+Upstream-Status: Submitted [rpm5-devel@rpm5.org]
+Signed-off-by: Manojkiran Eda <manojkiran.eda@gmail.com>
+---
+ arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts
+index 2566d26f6714..d0e9864c4742 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts
+@@ -44,6 +44,11 @@ reserved-memory {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		ranges;
++                
++                event_log: tcg_event_log@b3d00000 {
++			no-map;
++			reg = <0xb3d00000 0x100000>;
++		};
+ 
+ 		ramoops@b3e00000 {
+ 			compatible = "ramoops";
+@@ -1415,7 +1420,11 @@ eeprom@51 {
+ 
+ &i2c12 {
+ 	status = "okay";
+-
++        tpm@2e {
++		compatible = "nuvoton,npct75x", "tcg,tpm-tis-i2c";
++		reg = <0x2e>;
++		memory-region = <&event_log>;
++	};
+ 	eeprom@50 {
+ 		compatible = "atmel,24c64";
+ 		reg = <0x50>;
+-- 
+2.34.1
+
