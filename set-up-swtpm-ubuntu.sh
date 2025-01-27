@@ -58,26 +58,6 @@ make -j$(nproc)
 sudo make install
 sudo ldconfig
 
-# Install tpm-tools software
-git clone https://github.com/tpm2-software/tpm2-tools ~/tpm2-tools
-cd ~/tpm2-tools
-git checkout 5.7
-./bootstrap
-./configure
-make -j$(nproc)
-sudo make install
-sudo ldconfig
-
-# Install tpm2-openssl for tpm2 provider support
-git clone https://github.com/tpm2-software/tpm2-openssl ~/tpm2-openssl
-cd ~/tpm2-openssl
-git checkout 1.2.0
-./bootstrap
-./configure
-make -j$(nproc)
-sudo make install
-sudo ldconfig
-
 # Install libtpms-devel
 git clone https://github.com/stefanberger/libtpms ~/libtpms
 cd ~/libtpms
