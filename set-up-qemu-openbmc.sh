@@ -28,7 +28,7 @@ sudo apt install git-email\
 		 valgrind \
 		 xfslibs-dev \
 		 python3-pip \
-		 setuptools
+		 python3-setuptools
 
 # Download openbmc/qemu source code
 git clone https://github.com/openbmc/qemu.git ~/openbmc-qemu
