@@ -24,17 +24,17 @@ sudo apt -y install \
 	    libltdl-dev \
 	    libglib2.0-dev \
 	    expect \
-		dh-autoreconf \
-		libtasn1-6-dev \
-		net-tools \
-		libgnutls28-dev \
-		gawk \
-		socat \
-		libfuse-dev \
-		libseccomp-dev \
-		make \
-		libjson-glib-dev \
-		gnutls-bin
+	    dh-autoreconf \
+	    libtasn1-6-dev \
+	    net-tools \
+	    libgnutls28-dev \
+	    gawk \
+	    socat \
+	    libfuse-dev \
+	    libseccomp-dev \
+	    make \
+	    libjson-glib-dev \
+	    gnutls-bin
 
 
 function check_continue()
