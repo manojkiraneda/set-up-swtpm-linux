@@ -13,7 +13,7 @@ IMAGE_SIZE=${2:-16G}  # Default image size is 16G if not provided
 # Define variables
 REPO_URL="https://github.com/openbmc/openbmc.git"
 REMOTE_HOME="/home/$(echo $REMOTE_HOST | cut -d'@' -f1)"
-REMOTE_REPO_PATH="$REMOTE_HOME/master/openbmc"
+REMOTE_REPO_PATH="$REMOTE_HOME/openbmc-master-tpm"
 REMOTE_PATCH_DIR="$REMOTE_REPO_PATH/meta-ibm/recipes-kernel/linux/linux-aspeed/"
 PATCH_FILE="0001-Add-TPM-to-rainier-device-tree.patch"
 BBAPPEND_FILE="$REMOTE_REPO_PATH/meta-ibm/recipes-kernel/linux/linux-aspeed_%.bbappend"
