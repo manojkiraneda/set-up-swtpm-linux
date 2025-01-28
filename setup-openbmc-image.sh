@@ -83,8 +83,8 @@ fi
 # Prepare the MMC image
 echo "Creating MMC image..."
 dd if=/dev/zero of=$MMC_IMAGE bs=1M count=128 status=progress
-dd if=u-boot-spl.bin-p10bmc of=$MMC_IMAGE conv=notrunc
-dd if=u-boot.bin-p10bmc of=$MMC_IMAGE conv=notrunc bs=1K seek=64
+dd if=u-boot-spl.bin of=$MMC_IMAGE conv=notrunc
+dd if=u-boot.bin of=$MMC_IMAGE conv=notrunc bs=1K seek=64
 $XZDEC obmc-phosphor-image-p10bmc.wic.xz | dd of=$MMC_IMAGE conv=notrunc bs=1M seek=2 status=progress
 truncate --size=$IMAGE_SIZE $MMC_IMAGE
 
