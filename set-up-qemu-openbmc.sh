@@ -28,12 +28,13 @@ sudo apt install git-email\
 		 valgrind \
 		 xfslibs-dev \
 		 python3-pip \
-		 python3-setuptools
+		 python3-setuptools \
+		 libslirp-dev
 
 # Download openbmc/qemu source code
 git clone https://github.com/openbmc/qemu.git ~/openbmc-qemu
 cd ~/openbmc-qemu
-./configure --target-list=arm-softmmu
+./configure --target-list=arm-softmmu --enable-slirp
 ninja -C build
 cd build
 ninja install
