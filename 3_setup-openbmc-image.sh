@@ -31,9 +31,9 @@ else
 fi
 EOF
 
-# Copy the patch file to the remote server
-echo "Copying patch file to remote server..."
-scp "$PATCH_FILE" "$REMOTE_HOST:$REMOTE_PATCH_DIR"
+# Copy the patch file to the remote server (rsync will skip if identical)
+echo "Syncing patch file to remote server..."
+rsync -avz --progress "$PATCH_FILE" "$REMOTE_HOST:$REMOTE_PATCH_DIR/"
 
 # Update the bbappend file on the remote server
 echo "Updating bbappend file on remote server..."
@@ -57,7 +57,7 @@ bitbake obmc-phosphor-image
 EOF
 
 # Ensure required tools are available
-for cmd in scp dd truncate xz; do
+for cmd in rsync dd truncate xz; do
     if ! command -v $cmd &>/dev/null; then
         echo "Error: Required command '$cmd' not found. Please install it and try again."
         exit 1
@@ -70,9 +70,9 @@ XZDEC="xzcat"  # Use xzcat for decompression
 
 # Copy artifacts from the build
 echo "Copying artifacts from the build directory on the remote server..."
-scp "$REMOTE_HOST:$BUILD_PATH/u-boot-spl.bin" .
-scp "$REMOTE_HOST:$BUILD_PATH/u-boot.bin" .
-scp "$REMOTE_HOST:$BUILD_PATH/obmc-phosphor-image-p10bmc.wic.xz" .
+rsync -avzL --progress "$REMOTE_HOST:$BUILD_PATH/u-boot-spl.bin" .
+rsync -avzL --progress "$REMOTE_HOST:$BUILD_PATH/u-boot.bin" .
+rsync -avzL --progress "$REMOTE_HOST:$BUILD_PATH/obmc-phosphor-image-p10bmc.wic.xz" .
 
 # Check if files were successfully copied
 if [ ! -f u-boot-spl.bin ] || [ ! -f u-boot.bin ] || [ ! -f obmc-phosphor-image-p10bmc.wic.xz ]; then
