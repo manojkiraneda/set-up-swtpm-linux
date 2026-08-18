@@ -25,6 +25,7 @@ sudo apt install git-email\
 		 libvte-2.91-dev \
 		 libxen-dev \
 		 liblzo2-dev \
+		 ninja-build \
 		 valgrind \
 		 xfslibs-dev \
 		 python3-pip \
